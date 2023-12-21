@@ -5,7 +5,31 @@ using namespace std;
 
 // problem: 219. Contains Duplicate II
 
-// my approach:
+// approach: using map
+
+class Solution
+{
+public:
+    bool containsNearbyDuplicate(vector<int> &nums, int k)
+    {
+        unordered_map<int, int> mp;
+
+        for (int i = 0; i < nums.size(); i++)
+        {
+            if (mp.find(nums[i]) != mp.end() && abs(mp[nums[i]] - i) <= k)
+                return true;
+
+            // second approach
+
+            // if (mp.count(nums[i]) && abs(mp[nums[i]] - i) <= k)
+            //     return true;
+
+            mp[nums[i]] = i;
+        }
+
+        return false;
+    }
+};
 
 class Solution
 {

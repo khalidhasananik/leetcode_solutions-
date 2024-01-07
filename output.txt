@@ -1,2 +1,54 @@
-3
-Invalid
+generate(3, 0, 0, "")
+Calling generate with an added open parenthesis.
+generate(3, 1, 0, "(")
+Calling generate with an added open parenthesis.
+generate(3, 2, 0, "((")
+Calling generate with an added open parenthesis.
+generate(3, 3, 0, "(((")
+Calling generate with an added closed parenthesis.
+generate(3, 3, 1, "((()")
+Calling generate with an added closed parenthesis.
+generate(3, 3, 2, "((())")
+Calling generate with an added closed parenthesis.
+generate(3, 3, 3, "((()))")
+Base case reached. Adding "((()))" to result.
+Calling generate with an added closed parenthesis.
+generate(3, 2, 1, "(()")
+Calling generate with an added open parenthesis.
+generate(3, 3, 1, "(()(")
+Calling generate with an added closed parenthesis.
+generate(3, 3, 2, "(()()")
+Calling generate with an added closed parenthesis.
+generate(3, 3, 3, "(()())")
+Base case reached. Adding "(()())" to result.
+Calling generate with an added closed parenthesis.
+generate(3, 2, 2, "(())")
+Calling generate with an added open parenthesis.
+generate(3, 3, 2, "(())(")
+Calling generate with an added closed parenthesis.
+generate(3, 3, 3, "(())()")
+Base case reached. Adding "(())()" to result.
+Calling generate with an added closed parenthesis.
+generate(3, 1, 1, "()")
+Calling generate with an added open parenthesis.
+generate(3, 2, 1, "()(")
+Calling generate with an added open parenthesis.
+generate(3, 3, 1, "()((")
+Calling generate with an added closed parenthesis.
+generate(3, 3, 2, "()(()")
+Calling generate with an added closed parenthesis.
+generate(3, 3, 3, "()(())")
+Base case reached. Adding "()(())" to result.
+Calling generate with an added closed parenthesis.
+generate(3, 2, 2, "()()")
+Calling generate with an added open parenthesis.
+generate(3, 3, 2, "()()(")
+Calling generate with an added closed parenthesis.
+generate(3, 3, 3, "()()()")
+Base case reached. Adding "()()()" to result.
+Final result:
+((()))
+(()())
+(())()
+()(())
+()()()

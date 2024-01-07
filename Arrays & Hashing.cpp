@@ -3,6 +3,39 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// problem:20. Valid Parentheses
+
+// my approach: using stack and hash map
+
+class Solution
+{
+public:
+    bool isValid(string s)
+    {
+        stack<char> st;
+
+        map<char, char> mp;
+
+        mp[')'] = '(';
+        mp['}'] = '{';
+        mp[']'] = '[';
+
+        for (int i = 0; i < s.length(); i++)
+        {
+            if (s[i] == '(' || s[i] == '{' || s[i] == '[')
+                st.push(s[i]);
+
+            else if (st.empty() || st.top() != mp[s[i]])
+                return false;
+
+            else
+                st.pop();
+        }
+
+        return st.empty();
+    }
+};
+
 // problem: 128. Longest Consecutive Sequence
 
 // approach: using set

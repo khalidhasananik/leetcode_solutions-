@@ -15,52 +15,53 @@ using namespace std;
 class Solution
 {
 public:
-    bool checkValid(vector<vector<int>> &matrix)
+    vector<string> generateParenthesis(int n)
     {
-        int n = matrix.size();
+        vector<string> result;
+        generate(n, 0, 0, "", result);
+        return result;
+    }
 
-        for (int i = 0; i < n; i++)
+private:
+    void generate(int n, int open, int close, string str, vector<string> &result)
+    {
+        cout << "generate(" << n << ", " << open << ", " << close << ", \"" << str << "\")" << endl;
+
+        if (open == n && close == n)
         {
-            set<int> row, col;
-
-            for (int j = 0; j < n; j++)
-            {
-                row.insert(matrix[i][j]);
-                col.insert(matrix[j][i]);
-            }
-
-            if (row.size() != n || col.size() != n)
-                return false;
+            result.push_back(str);
+            cout << "Base case reached. Adding \"" << str << "\" to result." << endl;
+            return;
         }
 
-        return true;
+        if (open < n)
+        {
+            cout << "Calling generate with an added open parenthesis." << endl;
+            generate(n, open + 1, close, str + '(', result);
+        }
+
+        if (open > close)
+        {
+            cout << "Calling generate with an added closed parenthesis." << endl;
+            generate(n, open, close + 1, str + ')', result);
+        }
     }
 };
-
 signed main()
 {
     fast_io;
 
     std_in_out;
 
-    int n;
+    Solution solution;
+    int n = 3;
+    vector<string> result = solution.generateParenthesis(n);
 
-    cin >> n;
-
-    vector<vector<int>> matrix(n, vector<int>(n));
-
-    for (int i = 0; i < n; i++)
-
-        for (int j = 0; j < n; j++)
-
-            cin >> matrix[i][j];
-
-    Solution obj;
-
-    if (obj.checkValid(matrix))
-        cout << "Valid" << endl;
-    else
-        cout << "Invalid" << endl;
+    cout << "Final result:" << endl;
+    for (const string &s : result)
+    {
+        cout << s << endl;
+    }
 
     return 0;
 }

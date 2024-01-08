@@ -1,3 +1,10 @@
+// Created by Khalid Hasan
+// Created on: 9-jan-2024
+// github: https://github.com/khalidhasananik/leetcode_solutions-/blob/main/test.cpp
+
+// the problem is to check whether a string is palindrome or not ignoring cases and special characters
+// approach: using two pointers
+
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -7,61 +14,50 @@ using namespace std;
 #define endl "\n"
 
 #define fast_io ios_base::sync_with_stdio(false), cin.tie(NULL);
-
-#define std_in_out freopen("input.txt", "r", stdin), freopen("output.txt", "w", stdout);
-
-#define std_in freopen("word.txt", "r", stdin);
-
 class Solution
 {
 public:
-    vector<string> generateParenthesis(int n)
+    bool isPalindrome(string s)
     {
-        vector<string> result;
-        generate(n, 0, 0, "", result);
-        return result;
-    }
+        int i = 0, j = s.size() - 1;
 
-private:
-    void generate(int n, int open, int close, string str, vector<string> &result)
-    {
-        cout << "generate(" << n << ", " << open << ", " << close << ", \"" << str << "\")" << endl;
-
-        if (open == n && close == n)
+        while (i < j)
         {
-            result.push_back(str);
-            cout << "Base case reached. Adding \"" << str << "\" to result." << endl;
-            return;
+            while (i < j && !isalnum(s[i]))
+                i++;
+
+            while (i < j && !isalnum(s[j]))
+                j--;
+
+            if (tolower(s[i]) != tolower(s[j]))
+                return false;
+
+            i++;
+            j--;
         }
 
-        if (open < n)
-        {
-            cout << "Calling generate with an added open parenthesis." << endl;
-            generate(n, open + 1, close, str + '(', result);
-        }
-
-        if (open > close)
-        {
-            cout << "Calling generate with an added closed parenthesis." << endl;
-            generate(n, open, close + 1, str + ')', result);
-        }
+        return true;
     }
 };
 signed main()
 {
     fast_io;
 
-    std_in_out;
+    string s = "A man, a plan, a canal : Panama";
 
-    Solution solution;
-    int n = 3;
-    vector<string> result = solution.generateParenthesis(n);
+    Solution obj;
 
-    cout << "Final result:" << endl;
-    for (const string &s : result)
-    {
-        cout << s << endl;
-    }
+    if (obj.isPalindrome(s))
+        cout << "is palindrome" << endl;
+    else
+        cout << "not palindrome" << endl;
+
+    string t = "race a car";
+
+    if (obj.isPalindrome(t))
+        cout << "is palindrome" << endl;
+    else
+        cout << "not palindrome" << endl;
 
     return 0;
 }
